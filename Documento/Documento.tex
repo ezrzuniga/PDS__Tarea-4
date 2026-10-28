@@ -1,0 +1,129 @@
+% IEEE-formatted preliminary article (conference)
+\documentclass[conference]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{csquotes}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{adjustbox}
+\usepackage{rotating}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{listings}
+% babel (english) redefine estos nombres al iniciar el documento
+\addto\captionsenglish{%
+  \renewcommand{\figurename}{Figura}%
+  \renewcommand{\tablename}{Tabla}%
+}
+\renewcommand{\lstlistingname}{Código}
+
+% Estilo para bloques de código Python
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{blue!70!black}\bfseries,
+  commentstyle=\color{green!45!black}\itshape,
+  stringstyle=\color{red!65!black},
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  numbersep=6pt,
+  frame=single,
+  rulecolor=\color{gray!60},
+  backgroundcolor=\color{gray!8},
+  breaklines=true,
+  showstringspaces=false,
+  upquote=true,
+  tabsize=4,
+  captionpos=b,
+  % Permite tildes y ñ dentro del código (p. ej. en comentarios)
+  literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+           {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+           {ñ}{{\~n}}1 {Ñ}{{\~N}}1
+}
+\usetikzlibrary{positioning, fit, arrows.meta, calc, patterns, decorations.pathreplacing}
+
+% --- Utilidades del borrador ---
+% Valor que se obtiene al ejecutar los scripts de Python
+\newcommand{\pendiente}[1]{\textcolor{red}{\textbf{[#1]}}}
+% Incluye la figura si ya existe; si no, deja un recuadro indicándolo
+\newcommand{\figuraopc}[2]{%
+  \IfFileExists{figuras/#1}%
+    {\includegraphics[width=\columnwidth]{figuras/#1}}%
+    {\fbox{\parbox{0.9\columnwidth}{\centering\vspace{1.5em}%
+      \textcolor{red}{Figura pendiente: ejecutar \texttt{#2}}\vspace{1.5em}}}}}
+
+\title{Tarea 4 - Señales y Sistemas en Tiempo Discreto 2}
+\author{\IEEEauthorblockN{Zúñiga Ramírez Jose Eduardo}
+\IEEEauthorblockA{Escuela de Ingeniería Electrónica \\
+Instituto Tecnológico de Costa Rica \\
+\{je.zuniga\}@estudiantec.cr}
+}
+\date{}
+
+\begin{document}
+\maketitle
+
+% Loosen line breaking to avoid overfull boxes in two-column layout
+\sloppy
+
+
+\section{Pregunta 1}
+Para calcular los polos y los ceros, se debe empezar por multiplicar $z^{k}$ en el numerador y denominador 
+para eliminar el factor negativo del exponente y para poder encontrar el cero que está oculto. Haciendo la 
+operación anterior se obtiene la ecuación \ref{eq:polinomio} y se iguala a cero tanto el numerador como el 
+denominador para obtener los ceros como polos respectivamente de la función.
+
+\begin{equation}
+H(z) = \frac{(1-\alpha)\,z^{k}}{z^{k} - \alpha}
+\label{eq:polinomio}
+\end{equation}
+
+\subsection{Ceros}
+Para el cálculo de los ceros se tiene: $(1-\alpha)z^k = 0$, donde para que la expresión sea cero, $z^{k}$ 
+debe ser cero, por lo que la expresión tiene un cero en $z = 0$ de orden $k=10$.
+
+\subsection{Polos}
+Para el caso de los polos se tiene $z^{k} - \alpha = 0$, despejando se tiene que  $z^{k} = \alpha$. Para 
+obtener los polos se debe calcular la raiz $k$-ésima de $\alpha$. La expresión se puede reescribir con 
+coordenadas polares para obtener todas las raices posibles de una manera más simple, teniendo la siguiente 
+igualdad: $z = r\,e^{j\theta}$. Con lo anterior se pueden reescribir las expresiones como $z^k = \left(r e^{j\theta}\right)^k = r^k\, e^{jk\theta}$ 
+y como $\alpha = \alpha\, e^{j2\pi m}$. Se procede a reescribir la igualdad de $z^{k} = \alpha$ con las 
+nuevas expresiones y se obtiene el resultado de la ecuación \ref{eq:polos}.
+
+\begin{equation}
+r^k\, e^{jk\theta} = \alpha\, e^{j2\pi m}
+\label{eq:polos}
+\end{equation}
+
+Se iguala cada parte por separado y se despeja el radio ($r$) y el angulo ($\theta$). Para el caso del radio 
+se tiene $r^k = \alpha$ y despejando $r = \alpha^{1/k}$. Para el ángulo $k\theta = 2\pi m$ y despejando 
+$\theta_m = \dfrac{2\pi m}{k}$. Con los resultados anteriores se pueden obtener los números en coordenadas 
+polares (\ref{eq:resultado}) que corresponden a las distintas raíces de la expresión y por ende, los polos. 
+
+\begin{equation}
+polos = \alpha^{1/k}\, e^{\,j\frac{2\pi m}{k}}, \qquad m = 0, 1, \dots, k-1
+\label{eq:resultado}
+\end{equation}
+
+
+
+\section{Pregunta 3}
+asd
+
+
+
+
+\section{Pregunta 4}
+asd
+
+
+
+
+\end{document}
